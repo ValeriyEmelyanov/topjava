@@ -1,8 +1,12 @@
 .idea
+lib
 out
 target
 *.iml
 log
-
+lib/
+out/
+target/
+log/
 
 
