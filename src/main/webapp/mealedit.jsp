@@ -24,15 +24,18 @@
             <input type="hidden" name="action" value='update'>
             <input type="hidden" name="id" value="${meal.id}">
         </c:if>
-        <label for="dateTime">Date/Time</label>
-        <input type="datetime-local" name="dateTime" id="dateTime" required value="${meal.dateTime}">
-        <br/>
-        <label for="description">Description</label>
-        <input type="text" name="description" id="description" required value="${meal.description}">
-        <br/>
-        <label for="calories">Calories</label>
-        <input type="number" name="calories" id="calories" required value="${meal.calories}">
-        <br/>
+        <dl>
+            <dt><label for="dateTime">Date/Time</label></dt>
+            <dd><input type="datetime-local" name="dateTime" id="dateTime" required value="${meal.dateTime}"></dd>
+        </dl>
+        <dl>
+            <dt><label for="description">Description</label></dt>
+            <dd><input type="text" name="description" id="description" required value="${meal.description}"></dd>
+        </dl>
+        <dl>
+            <dt><label for="calories">Calories</label></dt>
+            <dd><input type="number" name="calories" id="calories" required value="${meal.calories}"></dd>
+        </dl>
         <div>
             <c:if test="${empty meal.id}">
                 <button type="submit">Add</button>
@@ -40,6 +43,7 @@
             <c:if test="${!empty meal.id}">
                 <button type="submit">Update</button>
             </c:if>
+            <button onclick="window.history.back()" type="button">Cancel</button>
         </div>
     </form>
 
