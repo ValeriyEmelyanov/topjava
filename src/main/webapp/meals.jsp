@@ -9,17 +9,16 @@
 <h3><a href="index.html">Home</a></h3>
 <hr>
 <h2>Meals</h2>
+    <div id="commandpanel">
+        <a href="meals?action=add" class="addButton">Add Meal</a>
+    </div>
     <c:if test="${mealTos.isEmpty()}">
         <p>No meals<p>
     </c:if>
     <c:if test="${!mealTos.isEmpty()}">
-        <div id="commandpanel">
-            <a href="meals?action=add">Add Meal</a>
-        </div>
         <div>
             <table>
                 <tr id="title">
-                    <th>Id</th>
                     <th>Date/Time</th>
                     <th>Description</th>
                     <th>Calories</th>
@@ -28,15 +27,14 @@
                 <c:forEach var="mealTo" items="${mealTos}">
                     <jsp:useBean id="mealTo" type="ru.javawebinar.topjava.model.MealTo"/>
                     <tr class="${mealTo.excess ? "excess" : "notexcess"}">
-                        <td>${mealTo.id}</td>
                         <td>${dateTimeFormater.format(mealTo.dateTime)}</td>
                         <td>${mealTo.description}</td>
                         <td>${mealTo.calories}</td>
                         <td>
-                            <a href="meals?action=edit&id=${mealTo.id}">Edit</a>
+                            <a href="meals?action=edit&id=${mealTo.id}" class="rowButton">Edit</a>
                         </td>
                         <td>
-                            <a href="meals?action=delete&id=${mealTo.id}">Delete</a>
+                            <a href="meals?action=delete&id=${mealTo.id}" class="rowButton">Delete</a>
                         </td>
                     </tr>
                 </c:forEach>
