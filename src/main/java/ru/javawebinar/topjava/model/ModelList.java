@@ -1,6 +1,9 @@
 package ru.javawebinar.topjava.model;
 
+import ru.javawebinar.topjava.util.MealsUtil;
+
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +12,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 public class ModelList implements Model<Meal> {
+    private static final int CALORIES_PER_DAY = 2000;
     private static ModelList instance = new ModelList();
     private Map<Integer, Meal> meals;
 
@@ -27,8 +31,9 @@ public class ModelList implements Model<Meal> {
     }
 
     @Override
-    public List<Meal> list() {
-        return new ArrayList<>(meals.values());
+    public List<MealTo> list() {
+         return MealsUtil.getFilteredWithExcess(
+                 new ArrayList<>(meals.values()), LocalTime.MIN, LocalTime.MAX, CALORIES_PER_DAY);
     }
 
     @Override

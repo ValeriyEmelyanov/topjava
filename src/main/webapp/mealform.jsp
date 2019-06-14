@@ -3,20 +3,15 @@
 <html>
 <head>
     <title>Add meal</title>
-    <link href="<c:url value="/resources/mealsedit.css"/>" rel="stylesheet" type="text/css"/>
+    <link href="<c:url value="/resources/mealform.css"/>" rel="stylesheet" type="text/css"/>
 </head>
 <body>
-<h3><a href="index.html">Home</a></h3>
-<hr>
-<h2>Add meal</h2>
-
-    <c:if test="${!empty addResult}">
-        <div id="result">
-            Added: ${addResult}
-        </div>
-    </c:if>
-
-    <form method="post">
+    <h3><a href="index.html">Home</a></h3>
+    <hr>
+    <h2>${param.action == 'add' ? 'Add meal' : 'Edit meal'}</h2>
+    ${param.action == 'add' ? '' :
+        '<jsp:useBean id="meal" type="ru.javawebinar.topjava.model.Meal" scope="request"/>'}
+    <form method="post" action="meals">
         <c:if test="${empty meal.id}">
             <input type="hidden" name="action" value='add'>
         </c:if>
@@ -46,6 +41,6 @@
             <button onclick="window.history.back()" type="button">Cancel</button>
         </div>
     </form>
-
+    
 </body>
 </html>

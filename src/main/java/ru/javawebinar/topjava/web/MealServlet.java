@@ -17,79 +17,72 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Objects;
 
 //@WebServlet("meals.jsp")
 public class MealServlet extends HttpServlet {
     private static final Logger log = LoggerFactory.getLogger(MealServlet.class);
-    private static final DateTimeFormatter dateTimeFormater = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-    private static final Model<Meal> MODEL = ModelList.getInstance();
+    private static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+    private final Model<Meal> model = ModelList.getInstance();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         log.debug("redirect to meals");
         request.setCharacterEncoding("UTF-8");
 
-        List<Meal> meals = MODEL.list();
-        List<MealTo> mealTos = MealsUtil.getFilteredWithExcess(meals, LocalTime.MIN, LocalTime.MAX, 2000);
+        String action = request.getParameter("action");
+        log.debug("Action: {}", action);
 
-        request.setAttribute("dateTimeFormater", dateTimeFormater);
-        request.setAttribute("mealTos", mealTos);
-        request.getRequestDispatcher("meals.jsp").forward(request, response);
+        switch (action == null ? "list" : action) {
+            case "delete":
+                int id = getId(request);
+                log.debug("Delete id: {}", id);
+                model.delete(id);
+                response.sendRedirect("meals");
+                return;
+            case "add":
+                request.setAttribute("meal", null);
+                request.getRequestDispatcher("/mealform.jsp").forward(request, response);
+                return;
+            case "edit":
+                request.setAttribute("meal", model.getById(getId(request)));
+                request.getRequestDispatcher("/mealform.jsp").forward(request, response);
+                return;
+            case "list":
+            default:
+                request.setAttribute("dateTimeFormater", DATE_TIME_FORMATTER);
+                request.setAttribute("mealTos", model.list());
+                request.getRequestDispatcher("meals.jsp").forward(request, response);
+        }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
-        String action = request.getParameter("action");
-        log.debug("action: " + action);
+        String id = request.getParameter("id");
 
-        if (action == null) {
-            doGet(request, response);
-            return;
-        }
-
-        switch (action) {
-            case "forward":
-                String page = request.getParameter("page");
-                request.getRequestDispatcher(page).forward(request, response);
-                return;
-            case "add":
-                Meal mealToAdd = newMealFromRequest(request);
-                MODEL.add(mealToAdd);
-                request.setAttribute("addResult", mealToAdd.toString());
-                request.getRequestDispatcher("mealedit.jsp").forward(request, response);
-                return;
-            case "forwardToEdit": {
-                int id = Integer.valueOf(request.getParameter("id"));
-                Meal meal = MODEL.getById(id);
-                if (meal == null) {
-                    log.warn("not found id:" + id);
-                    doGet(request, response);
-                    return;
-                }
-                request.setAttribute("meal", meal);
-                request.getRequestDispatcher("mealedit.jsp").forward(request, response);
-                return;
-            }
-            case "update": {
-                int id = Integer.valueOf(request.getParameter("id"));
-                Meal meal = MODEL.getById(id);
-                if (meal == null) {
-                    log.warn("not found id:" + id);
-                    doGet(request, response);
-                    return;
-                }
+        if (id == null || id.isEmpty()) {
+            // Add
+            Meal newMeal = newMealFromRequest(request);
+            model.add(newMeal);
+            log.debug("Added new meal: {}", newMeal);
+        } else {
+            // Update
+            Meal meal = model.getById(Integer.parseInt(id));
+            if (meal == null) {
+                log.warn("Not found id: " + id);
+            } else {
                 updateMealFromRequest(request, meal);
-                MODEL.update(meal);
-                doGet(request, response);
-                return;
+                model.update(meal);
+                log.debug("Updated meal: {}", meal);
             }
-            case "delete":
-                int id = Integer.valueOf(request.getParameter("id"));
-                MODEL.delete(id);
-                doGet(request, response);
-                return;
         }
+        response.sendRedirect("meals");
+    }
+
+    private int getId(HttpServletRequest request) {
+        String id = Objects.requireNonNull(request.getParameter("id"));
+        return Integer.parseInt(id);
     }
 
     private Meal newMealFromRequest(HttpServletRequest request) {

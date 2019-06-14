@@ -1,3 +1,8 @@
+div#commandpanel {
+    margin: auto;
+    padding: 10px;
+}
+
 table {
     border-collapse: collapse;
     width: 80%;
