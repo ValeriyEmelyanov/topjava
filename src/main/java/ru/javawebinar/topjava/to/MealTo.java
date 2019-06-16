@@ -1,7 +1,9 @@
-package ru.javawebinar.topjava.model;
+package ru.javawebinar.topjava.to;
 
+import javax.persistence.Entity;
 import java.time.LocalDateTime;
 
+@Entity
 public class MealTo {
     private final Integer id;
 

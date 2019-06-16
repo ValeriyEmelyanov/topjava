@@ -1,11 +1,13 @@
 package ru.javawebinar.topjava.model;
 
+import javax.persistence.Entity;
 import java.util.Date;
 import java.util.EnumSet;
 import java.util.Set;
 
 import static ru.javawebinar.topjava.util.MealsUtil.DEFAULT_CALORIES_PER_DAY;
 
+@Entity
 public class User extends AbstractNamedEntity {
 
     private String email;
@@ -32,6 +34,16 @@ public class User extends AbstractNamedEntity {
         this.enabled = enabled;
         this.roles = roles;
     }
+
+    public User(String name, String email, String password, Role role, Role... roles) {
+        super(null, name);
+        this.email = email;
+        this.password = password;
+        this.caloriesPerDay = DEFAULT_CALORIES_PER_DAY;
+        this.enabled = true;
+        this.roles = EnumSet.of(role, roles);
+    }
+
 
     public String getEmail() {
         return email;
