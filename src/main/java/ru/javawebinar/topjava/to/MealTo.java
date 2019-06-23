@@ -2,6 +2,7 @@ package ru.javawebinar.topjava.to;
 
 import javax.persistence.Entity;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Entity
 public class MealTo {
@@ -29,6 +30,10 @@ public class MealTo {
 
     public LocalDateTime getDateTime() {
         return dateTime;
+    }
+
+    public LocalTime getTime() {
+        return dateTime.toLocalTime();
     }
 
     public String getDescription() {

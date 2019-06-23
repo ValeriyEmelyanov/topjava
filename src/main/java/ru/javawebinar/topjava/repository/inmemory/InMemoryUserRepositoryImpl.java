@@ -51,9 +51,9 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
     @Override
     public List<User> getAll() {
         log.info("getAll");
-        ArrayList<User> users = new ArrayList<>(repository.values());
-        users.sort(Comparator.comparing(AbstractNamedEntity::getName));
-        return users;
+        return repository.values().stream()
+                .sorted(Comparator.comparing(User::getName).thenComparing(User::getEmail))
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -63,13 +63,9 @@ public class InMemoryUserRepositoryImpl implements UserRepository {
             return null;
         }
 
-        List<User> users = repository.values().stream()
-                .filter(user -> email.equalsIgnoreCase(user.getEmail()))
-                .collect(Collectors.toList());
-        if (users.isEmpty()) {
-            return null;
-        }
-
-        return users.get(0);
+        return repository.values().stream()
+                .filter(user -> email.equalsIgnoreCase(user.getName()))
+                .findFirst()
+                .orElse(null);
     }
 }

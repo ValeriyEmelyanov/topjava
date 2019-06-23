@@ -4,6 +4,7 @@ import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.to.MealTo;
 import ru.javawebinar.topjava.util.exception.NotFoundException;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface MealService {
@@ -17,4 +18,6 @@ public interface MealService {
     void update(Meal meal, int userId);
 
     List<MealTo> list(int userId);
+
+    List<MealTo> listBetweenDates(LocalDate startDate, LocalDate endDate, int userId);
 }
