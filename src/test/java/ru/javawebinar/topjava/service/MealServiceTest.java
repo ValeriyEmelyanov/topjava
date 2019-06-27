@@ -14,6 +14,7 @@ import ru.javawebinar.topjava.util.exception.NotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.Arrays;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static ru.javawebinar.topjava.MealTestData.*;
@@ -37,7 +38,7 @@ public class MealServiceTest {
     @Test
     public void get() {
         Meal meal = service.get(ID_1, USER_ID);
-        assertThat(meal.toString()).isEqualTo(MEAL_1.toString());
+        assertThat(meal.toString()).isEqualTo(MEAL1.toString());
     }
 
     @Test(expected = NotFoundException.class)
@@ -60,6 +61,8 @@ public class MealServiceTest {
     public void getBetweenDates() {
         assertThat(service.getBetweenDates(LocalDate.of(2019, 5, 30), LocalDate.of(2019, 5, 30), USER_ID).size())
                 .isEqualTo(3);
+        assertThat(service.getBetweenDates(LocalDate.of(2019, 5, 30), LocalDate.of(2019, 5, 30), USER_ID))
+                .isEqualTo(Arrays.asList(MEAL3, MEAL2, MEAL1));
     }
 
     @Test
@@ -67,6 +70,9 @@ public class MealServiceTest {
         assertThat(service.getBetweenDateTimes(
                 LocalDateTime.of(2019, 5, 30, 11, 0, 0), LocalDateTime.of(2019, 5, 30, 16, 0, 0), USER_ID).size())
                 .isEqualTo(1);
+        assertThat(service.getBetweenDateTimes(
+                LocalDateTime.of(2019, 5, 30, 11, 0, 0), LocalDateTime.of(2019, 5, 30, 16, 0, 0), USER_ID))
+                .isEqualTo(Arrays.asList(MEAL2));
     }
 
     @Test
