@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 import java.time.Month;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
+import static ru.javawebinar.topjava.MealTestData.*;
 
 @ContextConfiguration({
         "classpath:spring/spring-app.xml",
@@ -24,13 +24,6 @@ import static ru.javawebinar.topjava.model.AbstractBaseEntity.START_SEQ;
 @RunWith(SpringRunner.class)
 @Sql(scripts = "classpath:db/populateDB.sql", config = @SqlConfig(encoding = "UTF-8"))
 public class MealServiceTest {
-
-    public static final int USER_ID = START_SEQ;
-    public static final int ADMIN_ID = START_SEQ + 1;
-
-    public static final int ID_1 = 1;
-    public static final int ID_2 = 2;
-    public static final Meal MEAL = new Meal(ID_1, LocalDateTime.of(2019, Month.MAY, 30, 10, 0), "Завтрак", 500);
 
     static {
         // Only for postgres driver logging
@@ -44,7 +37,7 @@ public class MealServiceTest {
     @Test
     public void get() {
         Meal meal = service.get(ID_1, USER_ID);
-        assertThat(meal).isEqualTo(MEAL);
+        assertThat(meal.toString()).isEqualTo(MEAL_1.toString());
     }
 
     @Test(expected = NotFoundException.class)
@@ -55,7 +48,6 @@ public class MealServiceTest {
     @Test
     public void delete() {
         service.delete(ID_1, USER_ID);
-        //assertEquals(service.getAll(USER_ID).size(), 5);
         assertThat(service.getAll(USER_ID).size()).isEqualTo(5);
     }
 
@@ -79,6 +71,7 @@ public class MealServiceTest {
 
     @Test
     public void getAll() {
+        assertThat(service.getAll(USER_ID)).isEqualTo(MEALS);
         assertThat(service.getAll(USER_ID).size()).isEqualTo(6);
     }
 
@@ -86,7 +79,7 @@ public class MealServiceTest {
     public void update() {
         Meal updated = new Meal(ID_1, LocalDateTime.of(2019, Month.MAY, 1, 10, 0), "Завтрак плюс", 490);
         service.update(updated, USER_ID);
-        assertThat(service.get(ID_1, USER_ID)).isEqualTo(updated);
+        assertThat(service.get(ID_1, USER_ID).toString()).isEqualTo(updated.toString());
     }
 
     @Test
@@ -94,9 +87,7 @@ public class MealServiceTest {
         Meal newMeal = new Meal(LocalDateTime.of(2019, Month.MAY, 1, 10, 0), "Завтрак", 500);
         Meal created = service.create(newMeal, USER_ID);
         newMeal.setId(created.getId());
-        //assertEquals(created, newMeal);
-        //assertEquals(service.getAll(USER_ID).size(), 7);
-        assertThat(created).isEqualTo(newMeal);
+        assertThat(created.toString()).isEqualTo(newMeal.toString());
         assertThat(service.getAll(USER_ID).size()).isEqualTo(7);
     }
 }
