@@ -8,5 +8,6 @@ lib/
 out/
 target/
 log/
+patches/
 
 
