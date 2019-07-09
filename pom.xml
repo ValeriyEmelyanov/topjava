@@ -18,7 +18,8 @@
 
         <spring.version>5.1.7.RELEASE</spring.version>
         <spring-data-jpa.version>2.1.9.RELEASE</spring-data-jpa.version>
-        <tomcat.version>9.0.21</tomcat.version>
+<!--        <tomcat.version>9.0.21</tomcat.version>-->
+        <tomcat.version>8.5.40</tomcat.version>
 
         <!-- Logging -->
         <logback.version>1.2.3</logback.version>
@@ -159,6 +160,12 @@
             <artifactId>assertj-core</artifactId>
             <version>3.12.2</version>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>${hibernate.version}</version>
         </dependency>
     </dependencies>
 
