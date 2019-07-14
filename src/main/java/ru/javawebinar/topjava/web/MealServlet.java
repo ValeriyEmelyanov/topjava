@@ -25,7 +25,7 @@ import static ru.javawebinar.topjava.util.DateTimeUtil.parseLocalTime;
 
 public class MealServlet extends HttpServlet {
 
-    private ConfigurableApplicationContext springContext;
+    private GenericXmlApplicationContext springContext;
     private MealRestController mealController;
 
     @Override
@@ -34,7 +34,7 @@ public class MealServlet extends HttpServlet {
         //springContext = new ClassPathXmlApplicationContext("spring/spring-app.xml", "spring/spring-db.xml");
         springContext = new GenericXmlApplicationContext();
         springContext.getEnvironment().setActiveProfiles(Profiles.DATAJPA, Profiles.POSTGRES_DB);
-        ((GenericXmlApplicationContext) springContext).load("spring/spring-app.xml", "spring/spring-db.xml");
+        springContext.load("spring/spring-app.xml", "spring/spring-db.xml");
         springContext.refresh();
         mealController = springContext.getBean(MealRestController.class);
     }
