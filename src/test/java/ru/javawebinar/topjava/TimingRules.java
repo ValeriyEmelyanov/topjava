@@ -14,7 +14,7 @@ public class TimingRules {
     private static StringBuilder results = new StringBuilder();
 
     //    https://dzone.com/articles/applying-new-jdk-11-string-methods
-    private static String DELIM = "-".repeat(103);
+    private static String DELIM = new String(new char[103]).replace("\0", "-");
 
     // http://stackoverflow.com/questions/14892125/what-is-the-best-practice-to-determine-the-execution-time-of-the-bussiness-relev
     public static final Stopwatch STOPWATCH = new Stopwatch() {
