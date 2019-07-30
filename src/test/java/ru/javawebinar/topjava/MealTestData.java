@@ -1,5 +1,6 @@
 package ru.javawebinar.topjava;
 
+import org.springframework.test.web.servlet.ResultMatcher;
 import ru.javawebinar.topjava.model.Meal;
 import ru.javawebinar.topjava.to.MealTo;
 import ru.javawebinar.topjava.util.MealsUtil;
@@ -7,6 +8,8 @@ import ru.javawebinar.topjava.util.MealsUtil;
 import java.time.Month;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import static java.time.LocalDateTime.of;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -24,6 +27,10 @@ public class MealTestData {
     public static final Meal MEAL6 = new Meal(MEAL1_ID + 5, of(2015, Month.MAY, 31, 20, 0), "Ужин", 510);
     public static final Meal ADMIN_MEAL1 = new Meal(ADMIN_MEAL_ID, of(2015, Month.JUNE, 1, 14, 0), "Админ ланч", 510);
     public static final Meal ADMIN_MEAL2 = new Meal(ADMIN_MEAL_ID + 1, of(2015, Month.JUNE, 1, 21, 0), "Админ ужин", 1500);
+
+    public static final MealTo MEAL_TO1 = new MealTo(MEAL1, false);
+    public static final MealTo MEAL_TO2 = new MealTo(MEAL2, false);
+    public static final MealTo MEAL_TO3 = new MealTo(MEAL3, false);
 
     public static final List<Meal> MEALS = Arrays.asList(MEAL6, MEAL5, MEAL4, MEAL3, MEAL2, MEAL1);
     public static final List<MealTo> MEALS_TO = MealsUtil.getWithExcess(MEALS, MealsUtil.DEFAULT_CALORIES_PER_DAY);
@@ -46,5 +53,17 @@ public class MealTestData {
 
     public static <T> void assertMatch(Iterable<T> actual, Iterable<T> expected) {
         assertThat(actual).usingElementComparatorIgnoringFields("user").isEqualTo(expected);
+    }
+
+    public static ResultMatcher contentJson(Iterable<MealTo> expected) {
+        return result -> {
+            List<MealTo> actual = TestUtil.readListFromJsonMvcResult(result, MealTo.class);
+            List<MealTo> expect = StreamSupport.stream(expected.spliterator(), false).collect(Collectors.toList());
+            assertMatch(actual, expect);
+        };
+    }
+
+    public static ResultMatcher contentJson(Meal expected) {
+        return result -> assertMatch(TestUtil.readFromJsonMvcResult(result, Meal.class), expected);
     }
 }
