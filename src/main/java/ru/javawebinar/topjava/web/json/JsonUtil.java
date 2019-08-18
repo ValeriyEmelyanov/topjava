@@ -5,8 +5,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectReader;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static ru.javawebinar.topjava.web.json.JacksonObjectMapper.getMapper;
 
@@ -38,7 +37,10 @@ public class JsonUtil {
     }
 
     public static <T> String writeAdditionProps(T obj, String addName, Object addValue) {
-        return writeAdditionProps(obj, Map.of(addName, addValue));
+        //return writeAdditionProps(obj, Map.of(addName, addValue));
+        Map<String, Object> map = new HashMap<>();
+        map.put(addName, addValue);
+        return writeAdditionProps(obj, map);
     }
 
     public static <T> String writeAdditionProps(T obj, Map<String, Object> addProps) {
