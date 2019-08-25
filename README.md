@@ -1,5 +1,7 @@
 # Онлайн-проекта <a href="https://github.com/JavaWebinar/topjava">Topjava</a>
 
+[Деплой на heroku.com](http://veintershiptopjava17.herokuapp.com/login)
+
 > Заполняйте [форму проверки выпускного проекта](https://docs.google.com/forms/d/1G8cSGBfXIy9bNECo6L-tkxWQYWeVhfzR7te4b-Jwn-Q), проверять буду после 01.09. Срок сдачи - до 19.09.2019 (если не пошли на MasterJava).
 По стажировке AT Consulting будет информация в середине сентября. Для участия в ней необходимо желание и возможность трудоустроится в компанию (Москва, Санкт-Петербург) и успешно сданный выпускной (проект запускается, запросы проходят, грубых ляпов нет). Перечитайте [Рекомендации](https://github.com/JavaWebinar/topjava/blob/doc/doc/graduation.md#-рекомендации) еще раз и очень внимательно!
 
