@@ -1,202 +1,204 @@
-Java Enterprise Online Project 
-===============================
-Разработка полнофункционального Spring/JPA Enterprise приложения c авторизацией и правами доступа на основе ролей с использованием наиболее популярных инструментов и технологий Java: Maven, Spring MVC, Security, JPA(Hibernate), REST(Jackson), Bootstrap (css,js), datatables, jQuery + plugins, Java 8 Stream and Time API и хранением в базах данных Postgresql и HSQLDB.
+# Онлайн-проекта <a href="https://github.com/JavaWebinar/topjava">Topjava</a>
 
-![topjava_structure](https://user-images.githubusercontent.com/13649199/27433714-8294e6fe-575e-11e7-9c41-7f6e16c5ebe5.jpg)
+> Заполняйте [форму проверки выпускного проекта](https://docs.google.com/forms/d/1G8cSGBfXIy9bNECo6L-tkxWQYWeVhfzR7te4b-Jwn-Q), проверять буду после 01.09. Срок сдачи - до 19.09.2019 (если не пошли на MasterJava).
+По стажировке AT Consulting будет информация в середине сентября. Для участия в ней необходимо желание и возможность трудоустроится в компанию (Москва, Санкт-Петербург) и успешно сданный выпускной (проект запускается, запросы проходят, грубых ляпов нет). Перечитайте [Рекомендации](https://github.com/JavaWebinar/topjava/blob/doc/doc/graduation.md#-рекомендации) еще раз и очень внимательно!
 
-    Когда вы слышите что-то, вы забываете это.
-    Когда вы видите что-то, вы запоминаете это.
-    Но только когда вы начинаете делать это,
-    вы начинаете понимать это
+## <a href="https://drive.google.com/open?id=0B9Ye2auQ_NsFSzlObk8tbHdtcXc">Материалы занятия</a>
+#### Некоторые темы урока новые, поэтому видео есть не везде. Постараюсь дополнить после 29.08
+## Все материалы проекта (в том числе и будущие обновления) останутся доступны в [Google Drive](https://drive.google.com/drive/folders/0B9Ye2auQ_NsFflp6ZHBLSFI2OGVEZ2NQU0pzZkx4SnFmOWlzX0lzcDFjSi1SRk5OdzBYYkU)
 
-    Старинная китайская поговорка
+## ![hw](https://cloud.githubusercontent.com/assets/13649199/13672719/09593080-e6e7-11e5-81d1-5cb629c438ca.png) Разбор домашнего задания HW10
 
-## <a href="description.md">Описание и план проекта</a>
-### <a href="http://topjava.herokuapp.com/" target=_blank>Демо разрабатываемого приложения</a>
-### [Изменения проекта (Release Notes)](ReleaseNotes.md)
-### <a href="https://github.com/JavaOPs/topjava/wiki">Требования к участникам, Wiki</a>
-### <a href="cv.md">Составление резюме, подготовка к интервью, поиск работы</a>
+### ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 1. <a href="https://drive.google.com/open?id=0B9Ye2auQ_NsFX2V5eHRsa09IWHc">HW10</a>
+#### Apply 11_01_HW10_fix_encoding.patch
+> - Выставлять кодировку `-Dfile.encoding=UTF-8` лучше в _Help menu -> Edit Custom VM Options_
+> - Советы по дополнительным настройкам: 
+>   - [Customize IntelliJ IDEA Memory](http://tomaszdziurko.com/2015/11/1-and-the-only-one-to-customize-intellij-idea-memory-settings)
+>   - [Increase IDE memory limit in IntelliJ IDEA](http://tomaszdziurko.com/2015/11/1-and-the-only-one-to-customize-intellij-idea-memory-settings)
+>   - [Slow startup time on Windows](https://youtrack.jetbrains.com/issue/IDEA-211178#focus=streamItem-27-3412218.0-0)
 
-Вводное занятие (обязательно смотреть все видео)
-===============
-## ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 1. <a href="https://drive.google.com/file/d/0B9Ye2auQ_NsFY1ZDNXRCd1NCTG8">Осваиваем Java Enterprise. Трудоустройство. Ответы на вопросы.</a>
-- <a href="https://goo.gl/XNVOj4">Слайды презентации</a>
-- <a href="http://zeroturnaround.com/rebellabs/java-tools-and-technologies-landscape-2016/">Java Tools and Technologies Landscape Report 2016</a>
-- [Java in 2017 Survey](http://www.baeldung.com/java-in-2017)
-- <a href="https://habrahabr.ru/post/308104/">Из юниоров в разработчики: получаем первую работу</a>
+#### Apply 11_02_HW10_validation.patch
+> - В [соответствии со спицификацией](http://stackoverflow.com/a/22358422/548473) для поменял `HTTP 400` (ошибка в структуре сообщения) на `HTTP 422` (ошибка в содержании)
+> - Сделал тесты и проверку типа ошибки [через jsonPath](https://www.petrikainulainen.net/programming/spring-framework/integration-testing-of-spring-mvc-applications-write-clean-assertions-with-jsonpath/)
 
-#### Spring Pet-Clinic
-- <a href="https://github.com/spring-projects/spring-petclinic">Spring PetClinic Sample Application </a>
-- <a href="https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application">Presentation</a>
+#### Apply 11_03_HW10_duplicate_email.patch
+> - сделал код(ключ) i18n константой (`EXCEPTION_DUPLICATE_EMAIL`)
 
-## ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 2. <a href="https://drive.google.com/file/d/0B9Ye2auQ_NsFSUNrdVc0bDZuX2s">Системы управления версиями. Git.</a>
--  **<a href="https://github.com/JavaOPs/topjava/wiki/Git">Wiki по ведению проекта в Git</a>**
--  <a href="http://ru.wikipedia.org/wiki/Система_управления_версиями">Система управления версиями</a>. <a href="http://ru.wikipedia.org/wiki/%D0%A1%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D0%B0_%D1%83%D0%BF%D1%80%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F_%D0%B2%D0%B5%D1%80%D1%81%D0%B8%D1%8F%D0%BC%D0%B8#.D0.A0.D0.B0.D1.81.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D1.91.D0.BD.D0.BD.D1.8B.D0.B5_.D1.81.D0.B8.D1.81.D1.82.D0.B5.D0.BC.D1.8B_.D1.83.D0.BF.D1.80.D0.B0.D0.B2.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F_.D0.B2.D0.B5.D1.80.D1.81.D0.B8.D1.8F.D0.BC.D0.B8">VCS/DVSC</a>.
--  Ресурсы:            
-    -  <a href="https://try.github.io/levels/1/challenges/1">Интерактивная Git обучалка</a>
-    -  <a href="http://learngitbranching.js.org/">Еще одна интерактивная обучалка, по-русски</a>    
-    -  <a href="https://git-scm.com/book/ru/v2">Книга Git</a>
-    -  <a href="https://illustrated-git.readthedocs.org/en/latest/#working-with-remote-repositories">Working with remote repositories</a>
-    -  <a href="https://www.youtube.com/playlist?list=PLIU76b8Cjem5B3sufBJ_KFTpKkMEvaTQR">Видео по обучению Git</a>
-    -  <a href="https://blog.interlinked.org/tutorials/git.html">Git Overview</a>
-    -  [Основы Git за 20 минут](https://www.youtube.com/watch?v=TMeZGvtQnT8)
-    -  [Git - для новичков](https://www.youtube.com/watch?list=PLY4rE9dstrJyTdVJpv7FibSaXB4BHPInb&v=PEKN8NtBDQ0)
+#### Apply 11_04_HW10_duplicate_datetime.patch
+> - Реализавать обработку дублирования `user.email` и `meal.dateTime` можно по разному
+>   - через [поиск в сообщении `DataIntegrityViolationException` имени DB constrains](https://stackoverflow.com/a/42422568/548473)
+>   - через [Controller Based Exception Handling](https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc#controller-based-exception-handling)
 
-##  ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 3. <a href="https://drive.google.com/open?id=0B9Ye2auQ_NsFZDdaaU5fZEo4X3c">Работа с проектом (выполнять инструкции)</a>
-**ВНИМАНИЕ: выбирайте для проекта простой пусть без пробелов и русских букв, например (Windows) `c:\projects\topjava\`. Иначе впоследствии будут проблемы**
-> Проект постоянно улучшается, поэтому видео иногда отличается от кода проекта. Изменения указываю после видео: в `UserMeals/UserMealWithExceed` поля изменились на `private`
-- **<a href="https://drive.google.com/open?id=1zRIqAeLYGMb4T3JOrqDQv6ZN7HwWqgS_">Prepare_ to_ HW0.patch (скачать и положить в каталог вашего проекта)</a>**
+Первый самый простой и расширяемый (хотя зависить от базы), выбрал его. Для работы с HSQLDB сделал `toLowerCase`.
 
-##  Инструкция по шагам (из видео):</h3>
--  <a href="http://javaops.ru/view/soft">Установить ПО (git, JDK8, IntelliJ IDEA, Maven)</a>
--  Создать аккаунт на <a href="https://github.com">GitHub</a>
--  Сделать Fork **ЭТОГО** проекта (https://github.com/JavaOPs/topjava) </a>
--  Сделать локальный репозиторий проекта:
-            <pre>git clone https://github.com/[Ваш аккаунт]/topjava.git</pre>
--  Открыть и настроить проект в IDEA
-   - <a href="http://stackoverflow.com/questions/29695918/intellij-idea-console-issue#33035499">Выставить кодировку UTF-8 в консоли</a>
-   - <a href="https://github.com/JavaOPs/topjava/wiki/IDEA#%D0%9F%D0%BE%D1%81%D1%82%D0%B0%D0%B2%D0%B8%D1%82%D1%8C-%D0%BA%D0%BE%D0%B4%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D1%83-utf-8">Поставить кодировку UTF-8</a>
-   - <a href="https://github.com/JavaOPs/topjava/wiki/IDEA#%D0%9F%D0%BE%D0%BC%D0%B5%D0%BD%D1%8F%D1%82%D1%8C-%D1%84%D0%BE%D0%BD%D1%82-%D0%BF%D0%BE-%D1%83%D0%BC%D0%BE%D0%BB%D1%87%D0%B0%D0%BD%D0%B8%D1%8E-dejavu">Поменять фонт по умолчанию (DejaVu)</a>
--  По ходу видео сделать Apply Patch... скаченного патча Prepare_ to_ HW0.patch
--  Закоммитить и запушить изменения (commit + push)
--  Сделать ветку домашнего задания
--  Выполнить задание и залить на GitHub (commit + push)
--  Переключиться в основную ветку проекта master.
+> - Сделал утильный класс `MessageUtil` для работы с i18n.
+> - Добавил тесты на дублирование. Отключил транзакционность в тестах на дублирование через `@Transactional(propagation = Propagation.NEVER)`.
+>   - [Решение проблемы с транзакционными тестами](https://stackoverflow.com/a/46415060/548473)
 
-## ![hw](https://cloud.githubusercontent.com/assets/13649199/13672719/09593080-e6e7-11e5-81d1-5cb629c438ca.png) Домашнее задание HW0
+#### Apply 11_05_HW10_binder_validation.patch
+> - Добавил корректный способ проверки email с валидатором: проверка делается в контроллерах, а не при сохранении
+>   - [Spring MVC validator example](https://www.mkyong.com/spring-mvc/spring-mvc-form-handling-example/)
+ 
+
+###  ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png) 2. <a href="https://drive.google.com/open?id=0B9Ye2auQ_NsFYms4YUxEMHdxZHM">HW10 Optional: change locale</a>
+#### Apply 11_06_HW10_change_locale.patch
+> - Добавил локализацию календаря `$.datetimepicker.setLocale(localeCode)`
+> - Вместо смену локали в `lang.jsp` через javascript сделал `href=${requestScope['javax.servlet.forward.request_uri']}?lang=..`
+> - Добавил [Collapsing The Navigation Bar](https://www.w3schools.com/bootstrap4/bootstrap_navbar.asp)
+
+## Заключительное 11-е занятие
+
+### Локализация:
+#### Apply 11_07_i18n.patch
+ - Добавил [локализацию Search в datatable](https://datatables.net/reference/option/language)
+ - Сделал локализацию ошибок валидации:
+   - Все коды для локализации конкретной ошибки валидации можно посмотреть в дебаге: `FieldError.getCodes()`
+   - Коды для ее аргументов: `FieldError.getArguments()` (аргумент складывается из имени класса и поля).
+ - Добавил локализацию `ErrorInfo.type` (код локализации в `ErrorType` и поле `ErrorInfo.typeMessage`)
+ - В выводе AJAX ошибки вывожу `errorInfo.typeMessage`
+ - [Увеличил ширину высплывающего noty](https://stackoverflow.com/a/53855189/548473) 
+ 
+### Защита от XSS (Cross Site Scripting)
+> **Попробуйте до и после патча ввести в любое текстовое поле редактирования `<script>alert('XSS')</script>` и сохранить.**
+#### Apply 11_08_XSS.patch
+> - `password` проверять не надо, т.к. он не выводится в html, а [email надо](https://stackoverflow.com/questions/17480809)
+> - Сделал общий интерфейс валидации `View.Web` и `@Validated(View.Web.class)` вместо `@Valid` для проверки содержимого только на входе UI/REST. При сохранении проверка на безопасный html контент не делается.
+
+- <a href="https://forum.antichat.ru/threads/20140/">XSS для новичков</a>
+- <a href="https://habrahabr.ru/post/66057/">XSS глазами злоумышленника</a>
+- <a href="http://stackoverflow.com/a/40644276/548473">Prevent people from doing XSS in Spring MVC</a>
+
+### [Обработка ошибок 404 (NotFound)](https://stackoverflow.com/questions/18322279/spring-mvc-spring-security-and-error-handling)
+#### Apply 11_09_404.patch
+
+### Доступ к AuthorizedUser
+#### Apply 11_10_auth_user.patch
+- [Автоподстановка в контроллерах](https://docs.spring.io/spring-security/site/docs/current/reference/htmlsingle/#mvc-authentication-principal)
+  - не стал делать автоподстановку по всем контроллерам (в абстрактных контроллерах проще работать с `SecurityUtil`, чем получать его через `@AuthenticationPrincipal` и передавать параметром)
+- [В JSP: the authentication Tag](https://docs.spring.io/spring-security/site/docs/current/reference/html/taglibs.html#the-authentication-tag)
+  - авторизованный пользователь доступен в JSP через tag `authentication`, интерсептор становится не нужным
+
+### Ограничение модификации пользователей
+#### Apply 11_11_restrict_modification.patch
+ - В `AbstractUserController` добавилась защита от удаления-модификации `Admin/User` для профиля `HEROKU` (в `AbstractUserController` заинжектил `Environment` и сделал проверку `HEROKU`)
+ - Чтобы тесты были рабочими, ввел профиль `HEROKU`, работающий так же, как и `POSTGRES`.
+ - Добавил `ApplicationException` для работы с ошибками с поддержкой i18n в приложении (от него отнаследовал `NotFoundException` и `ModificationRestrictionException`)
+
+> Для тестирования с профилем heroku добавьте в VM options: `-Dspring.profiles.active="datajpa,heroku"`
+
+###  ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png)  <a href="https://drive.google.com/open?id=0B9Ye2auQ_NsFZkpVM19QWFBOQ2c">3. Деплой приложения в Heroku.</a>
+#### Apply 11_12_heroku.patch
+> - Добавил зависимости `postgres` в профиль мавена `heroku`
+> - [Поменял настройки `dataSource` для профиля `heroku`](http://stackoverflow.com/questions/10684244/dbcp-validationquery-for-different-databases). 
+При опускании/поднятии приложения в heroku.com портятся коннекты в пуле и необходимо их валидировать. 
+> - В tomcat 9 в `META-INF\services\javax.cache.spi.CachingProvider` находится реализация провайдера Redis JCache, которая конфликтует с нашеим ehcache провайдером: `ehcache-3.6.1.jar!\META-INF\services\javax.cache.spi.CachingProvider`. 
+ [Решается заменой зависимости на `webapp-runner-main`](https://github.com/jsimone/webapp-runner#excluding-memcached-and-redis-libraries)
+
+
+### Приложение деплоится в ROOT: [http://localhost:8080](http://localhost:8080)
+
+- [Деплой Java Spring приложения в PaaS-платформу Heroku](http://habrahabr.ru/post/265591)
 ```
-Реализовать метод UserMealsUtil.getFilteredWithExceeded через циклы (`forEach`):
--  должны возвращаться только записи между startTime и endTime 
--  поле UserMealWithExceed.exceed должно показывать, 
-                                     превышает ли сумма калорий за весь день параметра метода caloriesPerDay  
-        
-Т.е UserMealWithExceed - это запись одной еды, но поле exceeded будет одинаково для всех записей за этот день.
-    
-- Проверьте результат выполнения ДЗ (можно проверить логику в http://topjava.herokuapp.com , список еды)
-- Оцените Time complexity алгоритма. Если она больше O(N), например O(N*N) или N*log(N), сделайте O(N).
-```
--  <a href="http://www.mscharhag.com/2014/02/java-8-datetime-api.html">Java 8 Date and Time API</a>
--  <a href="https://tproger.ru/translations/algorithms-and-data-structures">Алгоритмы и структуры данных для начинающих: сложность алгоритмов</a>
--  <a href="https://drive.google.com/file/d/0B9Ye2auQ_NsFNEJWRFJkVDA3TkU/view">Time complexity</a>
--  <a href="https://ru.wikipedia.org/wiki/Временная_сложность_алгоритма">Временная сложность алгоритма</a>
--  <a href="https://ru.wikipedia.org/wiki/Вычислительная_сложность">Вычислительная сложность</a>
+Config Vars
+  ERROR_PAGE_URL=...
+  TOPJAVA_ROOT=/app
 
-#### ВНИМАНИЕ: варианты Optional делайте в `UserMealsUtil` в одной ветке в разных методах. Проще делать, проще проверять
+Datasources advanced
+    ssl=true
+    sslfactory=org.postgresql.ssl.NonValidatingFactory
+```    
 
-#### Optional (Java 8 Stream API)
-```
-Сделать реализацию через Java 8 Stream API.
-```
--  <a href="http://www.youtube.com/watch?v=_PDIVhEs6TM">Видео: Доступно о Java 8 Lambda</a>
--  <a href="https://devcolibri.com/java-8-killer-features-%D1%87%D0%B0%D1%81%D1%82%D1%8C-1/">Java 8: Lambda выражения</a>
--  <a href="https://devcolibri.com/java-8-killer-features-%D1%87%D0%B0%D1%81%D1%82%D1%8C-2/">Java 8: Потоки</a>
--  <a href="https://javadevblog.com/polnoe-rukovodstvo-po-java-8-stream.html">Pуководство по Java 8 Stream</a>
--  <a href="https://annimon.com/article/2778">Java 8 Stream API в картинках и примерах</a>
--  [7 способов использовать groupingBy в Stream API](https://habrahabr.ru/post/348536)
--  <a href="http://habrahabr.ru/post/224593/">Лямбда-выражения в Java 8</a>
--  <a href="https://github.com/winterbe/java8-tutorial">A Guide to Java 8</a>
--  <a href="http://habrahabr.ru/company/luxoft/blog/270383/">Шпаргалка Java Stream API</a>
--  <a href="https://www.youtube.com/watch?v=hEyCK4ueBlc">Алексея Владыкин: Элементы функционального программирования в Java</a>
--  <a href="https://www.youtube.com/watch?v=iD8H7cmxw_w">Yakov Fain о новом в Java 8</a>
--  <a href="http://stackoverflow.com/questions/28319064/java-8-best-way-to-transform-a-list-map-or-foreach">stream.map vs forEach</a>
--  Дополнительно
-   - [Сергей Куксенко — Stream API, часть 1](https://www.youtube.com/watch?v=O8oN4KSZEXE)
-   - [Сергей Куксенко — Stream API, часть 2](https://www.youtube.com/watch?v=i0Jr2l3jrDA)
+-  Ресурсы:
+   -  <a href="https://www.heroku.com/">PaaS-платформа Heroku</a></h3>
+   -  Конфигурирование приложения для запуска через <a href="https://devcenter.heroku.com/articles/java-webapp-runner">Tomcat-based Java Web</a>
+   -  Конфигурирование <a href="https://devcenter.heroku.com/articles/connecting-to-relational-databases-on-heroku-with-java#using-the-database_url-in-spring-with-xml-configuration">DataSource profile для Heroku</a>
+   -  <a href="http://www.jetbrains.com/idea/webhelp/run-debug-configuration-heroku-deployment.html">Интерграция с IDEA</a>
+   -  <a href="http://www.paasify.it/filter">Find your Platform as a Service</a>
+   -  <a href="https://devcenter.heroku.com/articles/getting-started-with-java#set-up">Getting Started with Java on Heroku</a>
+   -  <a href="https://devcenter.heroku.com/articles/keys">Managing Your SSH Keys</a>
+   -  <a href="https://devcenter.heroku.com/articles/getting-started-with-spring-mvc-hibernate#deploy-your-application-to-heroku">Deploy your application to Heroku</a>
+   -  <a href="http://www.ibm.com/developerworks/ru/library/j-javadev2-21/">Развертывание приложений Java с помощью PaaS от Heroku</a>
+   -  <a href="http://www.infoq.com/articles/paas_comparison">A Java Developer’s Guide to PaaS</a>
+   -  <a href="https://dzone.com/articles/simple-paas-comparison-guide">A Simple PaaS Comparison Guide (With the Java Dev in Mind)</a>
+   -  <a href="http://www.ibm.com/developerworks/library/j-paasshootout/">Java PaaS shootout</a>
 
-#### Optional 2 (+5 бонусов)
-```
-Сделать реализацию со сложностью O(N):
-- циклом за 1 проход по List<UserMeal>. Обратите внимание на п.13 замечаний
-- через Stream API за 1 проход по исходному списку Stream<UserMeal> meals
-  - возможно дополнительные проходы по частям списка
-  - нельзя использовать внешние коллекции, не являющиеся частью коллектора или результатами работы stream
-```
-#### Замечания по использованию Stream API:
-- Когда встречаешь что-то непривычное, приходится перестраивать мозги. Например, переход с процедурного на ООП программирование дается непросто. Те, кто не знает шаблонов (и не хотят учить) также их встречают плохо. Хорошая новость в том, что если это принять и начать использовать, то начинаешь получать от этого удовольствие. И тут главное не впасть в другую крайность:
-  - [Используйте Stream API проще (или не используйте вообще)](https://habrahabr.ru/post/337350/)
-- Если вас беспокоить производительность стримов, обязательно прочитайте про оптимизацию 
-    - ["Что? Где? Когда?"](http://optimization.guide/intro.html)
-    - [Перформанс: что в имени тебе моём?](https://habrahabr.ru/company/jugru/blog/338732/)
-    - [Performance это праздник](https://habrahabr.ru/post/326242/)
-    
-При использовании Stream API производительность улучшиться только на больших задачах, где возможно распараллеливание.
-Еще - просто так запустить и померять скорость JVM нельзя (как минимум дать прогреться и запустить очень большое число раз). Лучше использовать какие-нибудь бенчмарки, например [JMH](http://tutorials.jenkov.com/java-performance/jmh.html), который мы юзаем на другом проекте (Mastejava).
-  
-## ![error](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Замечания к HW0
-- 1: Код проекта менять можно! Одна из распространенных ошибок как в тестовых заданиях на собеседовании, так и при работе на проекте, что ничего нельзя менять. Конечно при правках в рабочем проекте обязательно нужно проконсультироваться/проревьюироваться у авторов кода (находится по истории VCS)
-- 2: Наследовать `UserMealWithExceed` от `UserMeal` я не буду, т.к. это разные сущности: Transfer Object и Entity. Мы будет их проходить на 2м уроке.
-- 3: Правильная реализация должна быть простой и красивой, можно сделать 2-мя способами: через стримы и через циклы. Сложность должна быть O(N), т.е. без вложенных стримов и циклов.
-- 4: При реализации через циклы посмотрите в `Map` на методы `getOrDefault` или `merge`
-- 5: **При реализации через `Stream` заменяйте `forEach` оператором `stream.map(..)`**
-- 6: Объявляйте переменные непосредственно перед использованием (если возможно - сразу с инициализацией). При объявлении коллекций используйте тип переменной - интерфейс (Map, List, ..)
-- 7: Если IDEA предлагает оптимизацию (желтым подчеркивает), например заменить лямбду на метод-референс, соглашайтесь (Alt+Enter)
-- 8: Пользуйтесь форматированием кода в IDEA: `Alt+Ctrl+L`
-- 9: Перед check-in проверяйте чендж-лист (курсор на файл и Ctrl+D): не оставляйте в коде ничего лишнего (закомментированный код, TODO и пр.). Если файл не меняется (например только пробелы или переводы строк), не надо его чекинить, делайте ему `revert` (Git -> Revert / `Ctrl+Alt+Z`).
-- 10: `System.out.println` нельзя делать нигде, кроме как в `main`. Позже введем логирование.
-- 11: Результаты, возвращаемые `UserMealsUtil.getFilteredWithExceeded` мы будем использовать [в нашем приложении](http://topjava.herokuapp.com/) для фильтрации по времени и отображения еды правильным цветом.
-- 12: Обращайте внимание на комментарии к вашим коммитам в git. Они должны быть короткие и информативные (лучше на english)
-- 13: Не полагайтесь в решении на то, что список будет подаваться отсортированным. Такого условия нет.
------
-## [Пример 7-го занятия онлайн стажировки, несколько видео открыто](https://github.com/JavaOPs/topjava/blob/master/doc/lesson07.md)
 
-### Полезные ресурсы
-> ВНИМАНИЕ:
->  - **ДЗ первого урока будет связано с [созданием небольшого CRUD приложения (в памяти, без DB) на JSP и сервлетах](https://danielniko.wordpress.com/2012/04/17/simple-crud-using-jsp-servlet-and-mysql/)**. Введение будет, но предварительное знакомство не помешает.
->  - основы JavaSсript необходимы для понимания проекта, начиная с 8-го занятия!
+###  ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png)  <a href="https://drive.google.com/open?id=0B9Ye2auQ_NsFQVc2WUdCR0xvLWM">4. Собеседование. Разработка ПО</a>
+- [Темы/ресурсы тестового собеседования](http://javaops.ru/interview/test.html)
+- [Составление резюме, подготовка к интервью, поиск работы](https://github.com/JavaOPs/topjava/blob/master/cv.md)
+- [Слайды](https://docs.google.com/presentation/d/18o__IGRqYadi4jx2wX2rX6AChHh-KrxktD8xI7bS33k), [Книги](http://javaops.ru/view/books)
+- [Jenkins/Hudson: что такое и для чего он нужен](https://habrahabr.ru/post/334730/)
 
-Все остальное - опционально.
+###  ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png)  <a href="https://drive.google.com/open?id=1QtHfavgIeLEnKA2Yt58XzKOouiLhg6qX">5. Разбор типовых собеседований (необработанный вебинар)</a>
+###  ![video](https://cloud.githubusercontent.com/assets/13649199/13672715/06dbc6ce-e6e7-11e5-81a9-04fbddb9e488.png)  <a href="http://javaops.ru/view/resources/fromStudyToJob">6. Вебинар выпускников</a>
 
-#### HTML, JavaScript, CSS 
-- [Basic HTML and HTML5](https://learn.freecodecamp.org/responsive-web-design/basic-html-and-html5/say-hello-to-html-elements/)
-- [Справочник по WEB](https://developer.mozilla.org/ru/)
-- [Видео по WEB технологиям](https://www.youtube.com/user/WebMagistersRu/playlists)
-- [Изучение JavaScript в одном видео уроке за час](https://www.youtube.com/watch?v=QBWWplFkdzw)
-- <a href="http://www.w3schools.com/default.asp">HTML, CSS, JAVASCRIPT, SQL, JQUERY, BOOTSTRAP</a>
-- <a href="https://www.youtube.com/watch?v=j0ycGQKqMT4">Введение в программирование на JavaScript</a>
-- <a href="http://anton.shevchuk.name/javascript/html-css-javascript-standarts/">Стандарты кодирования для HTML, CSS и JavaScript’a</a>
-- <a href="http://www.intuit.ru/studies/courses/1102/134/info">Основы работы с HTML/CSS/JavaScript</a>
-- <a href="http://itchief.ru/lessons/javascript/94-javascript-introduction">JavaScript - Основы</a>
-- <a href="http://learn.javascript.ru/first-steps">Основы JavaScript</a>
-- <a href="http://itchief.ru/lessons/bootstrap-3/19-introduction-to-twitter-bootstrap-3">Bootstrap 3 - Основы</a>
-- <a href="http://anton.shevchuk.name/jquery/">jQuery для начинающих</a>
+## ![hw](https://cloud.githubusercontent.com/assets/13649199/13672719/09593080-e6e7-11e5-81d1-5cb629c438ca.png)  Домашнее задание по проекту:
+- **Задеплоить свое приложение в Heroku** 
+   - [Маленькие хитрости с Heroku](https://javarush.ru/groups/posts/1987-malenjhkie-khitrosti-s-heroku)
+- Сделать / обновить резюме (отдать на ревью в канал #hw11 группы slack)
+  - [Загрузка сайта на GitHub. Бесплатный хостинг и домен.](https://vk.com/video-58538268_456239051?list=661b165047264e7952)
+  - [CSS theme for hosting your personal site, blog, or portfolio](https://mademistakes.com/work/minimal-mistakes-jekyll-theme/)
+- **Заполнить в [своем профиле Java Online Projects](http://javaops.ru/view/login) ссылку на резюме и информацию по поиску работы (если конечно актуально): резюме, флаги рассматриваю работу, готов к релокации и информация для HR.**
+   - Обновления базы соискателей буду рассылать по HR утром 06.05, постарайтесь успеть
+- **Заполнить [форму проверки выпускного проекта](https://docs.google.com/forms/d/1G8cSGBfXIy9bNECo6L-tkxWQYWeVhfzR7te4b-Jwn-Q) (возможно доплатить за ревью отдельно из JavaOPs профиля, как за тестовое собеседование: 1950р)**
+  - Для участников с проверкой выпускной проект принимаю на ревью до 16.05 (участникам [Masterjava](http://javaops.ru/view/masterjava) до 16.08)
+- **Получить первое открытое занятие МНОГОПОТОЧНОСТЬ и пройти эту важную тему в [проекте Masterjava](http://javaops.ru/view/masterjava)**
+   - Обучение на Masterjava сейчас идет в индивидуальном режиме, старт в любое время.
+   - Проект, патчи, группа Slack, занятия и видео анологичны проекту Topjava. 
+   - **По 15.09 цена снижена до 6300 руб.**
+   
+## Возможные доработки приложения:
+-  Для редактирования паролей сделать отдельный интерфейс с запросом старого пароля и кнопку сброса пароля для администратора.
+-  Добавление и удаление ролей для пользователей в админке.
+-  Перевести UI на Angular / <a href="https://vaadin.com/elements">Vaadin elements</a> /GWT /GXT /Vaadin / ZK/ [Ваш любимый фреймворк]..
+-  Перевести проект на <a href="http://projects.spring.io/spring-boot/">Spring Boot 2</a>
+-  Перевести шаблоны с JSP на <a href="http://www.thymeleaf.org/doc/articles/petclinic.html">Thymeleaf</a>
+-  Сделать авторизацию в приложение по OAuth 2.0 (<a href="http://projects.spring.io/spring-security-oauth/">Spring Security OAuth</a>,
+<a href="https://vk.com/dev/auth_mobile">VK auth</a>, <a href="https://developer.github.com/v3/oauth/">github oauth</a>, ...)
+-  Сделать подтверждение регистрации пользователя по email c возможностью восстановления пароля.
+-  Сделать отображение еды постранично, с поиском и сортировкой на стороне сервера.
+-  Перевод проекта на https
+-  Сделать desktop/mobile приложение, работающее по REST с нашим приложением.
+-  <a href="http://spring.io/blog/2012/08/29/integrating-spring-mvc-with-jquery-for-validation-rules/">Показ ошибок в модальном окне редактирования таблицы так же, как и в JSP профиля</a>
+-  <a href="http://www.mkyong.com/spring-security/spring-security-limit-login-attempts-example">Limit login attempts example</a>
+-  Сделать авторизацию REST по <a href="https://en.wikipedia.org/wiki/JSON_Web_Token">JWT</a>
 
-#### Java (базовые вещи)
-- <a href="http://www.intuit.ru/studies/courses/16/16/info">Интуит. Программирование на Java</a>
-- <a href="https://github.com/JavaOPs/masterjava#Первое-занятие-многопоточность">1й урок MasterJava: Многопоточность</a>
-- <a href="http://ggenikus.github.io/blog/2014/05/04/gc">Основы Java garbage collection</a>
-- <a href="https://habrahabr.ru/post/134102/">Размер Java объектов</a>
-- <a href="http://www.quizful.net/post/java-reflection-api">Введение в Java Reflection API</a>
-- <a href="https://habrahabr.ru/users/tarzan82/topics/">Структуры данных в картинках</a>
-- <a href="https://habrahabr.ru/company/luxoft/blog/157273/">Обзор java.util.concurrent.*</a>
-- <a href="http://www.skipy.ru/technics/synchronization.html">Синхронизация потоков</a>
-- <a href="http://java67.blogspot.ru/2014/08/difference-between-string-literal-and-new-String-object-Java.html">String literal pool</a>
-- <a href="https://habrahabr.ru/post/132241/">Маленькие хитрости Java</a>
--  <a href="https://github.com/winterbe/java8-tutorial">A Guide to Java 8</a>
+## Доработки участников прошлых выпусков:
+- [Авторизация в приложение по OAuth2 через GitHub](http://rblik-topjava.herokuapp.com)
+  - [GitHub, ветка oauth](https://github.com/rblik/topjava/tree/oauth)
+- [Авторизация в приложение по OAuth2 через GitHub/Facebook/Google](http://tj9.herokuapp.com)
+  - [GitHub](https://github.com/jacksn/topjava)
+- [Angular 2 UI](https://topjava-angular2.herokuapp.com)
+  - [tutorial по доработке](https://github.com/Gwulior/article/blob/master/article.md)
+  - [ветка angular2 в гитхабе](https://github.com/12ozCode/topjava08-to-angular2/tree/angular2)
+- [Отдельный фронтэнд на Angular 2, который работает по REST с авторизацией по JWT](https://topjava6-frontend.herokuapp.com)
+  - [ветка development фронтэнда](https://github.com/evgeniycheban/topjava-frontend/tree/development)
+  - [ветка development бэкэнда](https://github.com/evgeniycheban/topjava/tree/development)
+  - в <a href="https://en.wikipedia.org/wiki/JSON_Web_Token">JWT токенен</a> приложение topjava передает email, name и роль admin как boolean true/false,
+на клиенте он декодируется и из него получается auth-user, с которым уже работает фронтэнд
 
-### Туториалы, разное
-- [Что нужно знать о бэкенде новичку в веб-разработке](https://tproger.ru/translations/backend-web-development)
-- [Туториалы: Spring Framework, Hibernate, Java Core, JDBC](http://proselyte.net/tutorials/)
+#### Жду твою доработку из списка!
 
-#### Сервлеты
--  <a href="https://devcolibri.com/как-создать-servlet-полное-руководство/">Как создать Servlet? Полное руководство.</a>
+### Ресурсы по Проекту
+-  <a href="https://webformyself.com/urok-1-frejmvork-bootstrap-4-chto-takoe-bootstrap-otlichiya-bootstrap-3-ot-bootstrap-4/">Уроки Bootstrap 4</a>
+-  <a herf="http://www.tutorialspoint.com/spring/index.htm">Spring at tutorialspoint</a>
+-  <a href="http://www.codejava.net/frameworks/spring">Articles in Spring</a>
+-  <a href="http://www.baeldung.com/learn-spring">Learn Spring on Baeldung</a>
+-  <a href="https://docs.spring.io/spring/docs/current/spring-framework-reference/html/index.html">Spring Framework
+            Reference Documentation</a>
+-  <a href="http://hibernate.org/orm/documentation">Hibernate Documentation</a>
+-  <a href="http://java-course.ru/student/book2/">Java Course (книга 2)</a>
+-  <a href="http://design-pattern.ru/">Справочник «Паттерны проектирования»</a>
+-  <a href="http://martinfowler.com/eaaCatalog/">Catalog of Patterns of Enterprise Application Architecture</a>
 
-#### JDBC, SQL
-- <a href="https://habrahabr.ru/post/123636/">Основы SQL на примере задачи</a>
--  <a href="https://www.youtube.com/playlist?list=PLIU76b8Cjem5qdMQLXiIwGLTLyUHkTqi2">Уроки по JDBC</a>
--  <a href="https://www.codecademy.com/learn/learn-sql">Learn SQL</a>
--  <a href="http://www.intuit.ru/studies/courses/5/5/info">Интуит. Основы SQL</a>
--  <a href="http://campus.codeschool.com/courses/try-sql/contents">Try SQL</a>
--  <a href="https://stepic.org/course/Введение-в-базы-данных-551">Курс "Введение в базы данных"</a>
+## Пожалуйста <a href="http://goo.gl/forms/PtFcPqEV5n">ответь на 4-6 вопросов по проекту</a>, это важно!
 
-#### Разное
--  <a href="http://javaops.ru/view/test">Вопросы по собеседованию, ресурсы для подготовки</a>
--  <a href="http://jeeconf.com/materials/intellij-idea/">Эффективная работа с кодом в IntelliJ IDEA</a>
--  <a href="http://www.quizful.net/test">Quizful- тесты онлайн</a>
--  <a href="https://stepic.org/course/Введение-в-Linux-73">Введение в Linux</a>
-
-#### Книги
--  <a href="http://www.ozon.ru/context/detail/id/24828676/">Джошуа Блох: Java. Эффективное программирование. Второе издание</a>
--  <a href="http://www.labirint.ru/books/87603/">Гамма, Хелм, Джонсон: Приемы объектно-ориентированного проектирования. Паттерны проектирования</a>
--  <a href="http://www.bookvoed.ru/book?id=639284">Редмонд Э.: Семь баз данных за семь недель. Введение в современные базы данных и идеологию NoSQL</a>
--  <a href="http://www.ozon.ru/context/detail/id/3174887/">Brian Goetz: Java Concurrency in Practice</a>
--  <a href="http://bookvoed.ru/book?id=2593572">G.L. McDowell: Cracking the Coding Interview</a>
+## ![error](https://cloud.githubusercontent.com/assets/13649199/13672935/ef09ec1e-e6e7-11e5-9f79-d1641c05cbe6.png) Замечания по резюме:
+- варианты размещения: google doc + linkedin + hh + ... 
+- хорошо, если будет в html формате (например в https://pages.github.com/). [Например так](https://gkislin.github.io/), [на github](https://github.com/gkislin/gkislin.github.io/blob/master/index.html)
+-  возраст и день рождения можно не писать
+-  все упоминания Junior убрать!
+-  линки делай кликабельными (если формат поддерживает)
+-  если нет опыта в IT, обязательно вставь [участие в стажировке Topjava](https://github.com/JavaOPs/topjava/blob/master/cv.md#Позиционирование-проекта-topjava). Также вставь ссылку на свой сертификат (она есть в личном профиле). Весь не-IT опыт можно кратко.
+- всю выгодную для себя информацию (и важную для HR) распологайте вверху. Название секций в резюме и их порядок относительно стандартный и важный
+- **Внимание: резюме на hh или других ресурсах ДОЛЖНО БЫТЬ ОТКРЫТО ДЛЯ ПРОСМОТРА и иметь телефон для связи**
